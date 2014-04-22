@@ -1,6 +1,5 @@
 #!/usr/bin/env python
-# listening table - semantic listening enchanting a table
-# (c)nytlabs 2014
+# fixture_server to receive sensor packets
 
 import datetime
 import logging
