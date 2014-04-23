@@ -30,7 +30,7 @@ class FixtureHandler(BaseHandler):
             for line in self.request.files['fixture_payload'][0]['body'].split('\n'):
                 entries = line.split(',')
                 if len(entries) % 4 == 0: # sanity check to make sure we are dealing with a full deck, so to speak
-                    process(entries)
+                    self.process(entries)
                 
             ''' here is an example line of payload:
             1398221223683,-5.5385894775390625,-0.2913665771484375,7.8047637939453125
@@ -75,7 +75,7 @@ class FixtureHandler(BaseHandler):
             logging.info('mapped x is %s' % thisX)
             logging.info('mapped y is %s' % thisY)
             logging.info('mapped z is %s' % thisZ)
-            seq = {thisX, thisY, thisZ}
+            seq = (thisX, thisY, thisZ)
             toSend = ','.join(seq)
             logging.info('about to try to send %s ' % toSend)
 
