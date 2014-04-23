@@ -24,13 +24,12 @@ if __name__ == '__main__':
     tornado.options.logging = 'debug'
     tornado.options.parse_command_line()
 
-    client = MongoClient(tz_aware=True)
-    db = client.listening_table
+    # client = MongoClient(tz_aware=True)
+    # db = client.listening_table
     this_dir = os.path.dirname(__file__)
     static_path = os.path.join(this_dir, 'static')
     application = tornado.web.Application([
             (r'/fixture', FixtureHandler),
-
         ], db=db)
 
     static_path=static_path
