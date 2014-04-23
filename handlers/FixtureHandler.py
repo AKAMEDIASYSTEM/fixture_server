@@ -68,7 +68,7 @@ class FixtureHandler(BaseHandler):
         logging.info(entries)
         l = len(entries)/4
         logging.info('there are %s entries to parse' % l)
-        for i in reversed(range(l-1)):
+        for i in reversed(range(l)):
             logging.info('i is %s' % i)
             # thisTime = entries[i*4-4]
             thisX = self.mapVals(entries[i*4-3], -11.0, 11.0, 0.0, 255)
