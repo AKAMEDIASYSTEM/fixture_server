@@ -10,8 +10,10 @@ import tornado
 from tornado import gen
 import ResponseObject
 import requests
+import groups
 
 class FixtureHandler(BaseHandler):
+
     """Accept a file (CSV) with accelerometer samples in it"""
     def __init__(self, *args, **kwargs):
         BaseHandler.__init__(self,  *args, **kwargs)  
@@ -27,7 +29,7 @@ class FixtureHandler(BaseHandler):
             logging.info(self.request.files['fixture_payload'][0]['body'])
             for line in self.request.files['fixture_payload'][0]['body'].split('\n'):
                 entries = line.split(',')
-                if entries % 4 == 0: # sanity check to make sure we are dealing with a full deck, so to speak
+                if len(entries) % 4 == 0: # sanity check to make sure we are dealing with a full deck, so to speak
                     process(entries)
                 
             ''' here is an example line of payload:
@@ -73,4 +75,14 @@ class FixtureHandler(BaseHandler):
             logging.info('mapped x is %s' % thisX)
             logging.info('mapped y is %s' % thisY)
             logging.info('mapped z is %s' % thisZ)
-            # sendToSpark()
+            seq = {thisX, thisY, thisZ}
+            toSend = ','.join(seq)
+            logging.info('about to try to send %s ' % toSend)
+
+    def updateSpark(textData):
+        payment = {'access_token':groups.keylist['spark_token'],'args':textData}
+        url = groups.url
+        q = requests.post(url,data=payment)
+        logging.info(q.url)
+        logging.info(q.text)
+        logging.info(q.status_code)
