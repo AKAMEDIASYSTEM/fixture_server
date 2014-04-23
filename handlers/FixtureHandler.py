@@ -24,6 +24,6 @@ class FixtureHandler(BaseHandler):
         if self.isAuth():
             logging.info('we are authenticated and ready to debug data')
             # timestamp = datetime.datetime.utcnow()
-            logginf.info(self.get_arguments())
+            logging.info(self.get_arguments())
         else:
             self.write('Something is wack in FixtureHandler, self.isAuth wasnt True.')
