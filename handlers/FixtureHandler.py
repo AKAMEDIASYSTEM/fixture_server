@@ -9,7 +9,6 @@ from bson import json_util
 import tornado
 from tornado import gen
 import ResponseObject
-from keys import keys
 import requests
 
 class SubmitHandler(BaseHandler):
