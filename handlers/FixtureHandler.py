@@ -59,7 +59,7 @@ class FixtureHandler(BaseHandler):
         else:
             self.write('Something is wack in FixtureHandler, self.isAuth wasnt True.')
 
-    def mapVals(val, inMin, inMax, outMin, outMax):
+    def mapVals(self, val, inMin, inMax, outMin, outMax):
         toRet = float(outMin + (float(outMax - outMin) * (float(val - inMin) / float(inMax - inMin))))
         # return clamp(toRet, outMin, outMax)
         return toRet
@@ -70,8 +70,8 @@ class FixtureHandler(BaseHandler):
         logging.info('there are %s entries to parse' % l)
         if l==1:
             thisX = self.mapVals(entries[1], -11.0, 11.0, 0, 255)
-            thisX = self.mapVals(entries[1], -11.0, 11.0, 0, 255)
-            thisX = self.mapVals(entries[1], -11.0, 11.0, 0, 255)
+            thisY = self.mapVals(entries[2], -11.0, 11.0, 0, 255)
+            thisZ = self.mapVals(entries[3], -11.0, 11.0, 0, 255)
             logging.info('mapped x is %s' % thisX)
             logging.info('mapped y is %s' % thisY)
             logging.info('mapped z is %s' % thisZ)
@@ -79,7 +79,7 @@ class FixtureHandler(BaseHandler):
             toSend = ','.join(seq)
             logging.info('about to try to send %s ' % toSend)
             self.updateSpark(toSend)
-            
+
         for i in reversed(range(l)):
             logging.info('i is %s' % i)
             # thisTime = entries[i*4-4]
