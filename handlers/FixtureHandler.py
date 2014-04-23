@@ -68,7 +68,8 @@ class FixtureHandler(BaseHandler):
         l = len(entries)/4
         logging.info('there are %s entries to parse' % l)
         for i in reversed(range(l-1)):
-            thisTime = entries[i*4-4]
+            logging.info('i is %s' % i)
+            # thisTime = entries[i*4-4]
             thisX = self.mapVals(entries[i*4-3], -11.0, 11.0, 0.0, 255)
             thisY = self.mapVals(entries[i*4-2], -11.0, 11.0, 0.0, 255)
             thisZ = self.mapVals(entries[i*4-1], -11.0, 11.0, 0.0, 255)
@@ -81,6 +82,7 @@ class FixtureHandler(BaseHandler):
             self.updateSpark(toSend)
 
     def updateSpark(self, textData):
+        logging.info('trying to send the spark %s' % textData)
         payment = {'access_token':groups.keylist['spark_token'],'args':textData}
         url = groups.url
         q = requests.post(url,data=payment)
