@@ -65,6 +65,7 @@ class FixtureHandler(BaseHandler):
         return toRet
 
     def process(self, entries):
+        logging.info(entries)
         l = len(entries)/4
         logging.info('there are %s entries to parse' % l)
         for i in reversed(range(l-1)):
