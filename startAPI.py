@@ -1,5 +1,6 @@
 #!/usr/bin/env python
-# fixture_server to receive sensor packets
+# fixture - remote presence
+# 2014 AKA MEDIA SYSTEM
 
 import datetime
 import logging

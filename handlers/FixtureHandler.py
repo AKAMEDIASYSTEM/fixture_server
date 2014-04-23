@@ -1,6 +1,6 @@
 #!/usr/bin/env python
-# curriculum - semantic browsing for groups
-# (c)nytlabs 2014
+# fixture - remote presence
+# 2014 AKA MEDIA SYSTEM
 
 from handlers.BaseHandler import BaseHandler
 import logging

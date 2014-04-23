@@ -1,11 +1,10 @@
 #!/usr/bin/env python
-# curriculum - semantic browsing for groups
-# (c)nytlabs 2014
+# fixture - remote presence
+# 2014 AKA MEDIA SYSTEM
 
 import datetime
 import json
 import logging
-from pymongo import MongoClient
 import tornado
 from tornado import gen
 import tornado.ioloop
@@ -15,7 +14,6 @@ import tornado.template
 from bson import json_util
 import ResponseObject
 import traceback
-import keys
 
 class BaseHandler(tornado.web.RequestHandler):
 
@@ -40,14 +38,5 @@ class BaseHandler(tornado.web.RequestHandler):
             print self.response.response
 
     def isAuth(self):
-        # logging.info('entering isAuth function in BaseHandler')
-        db = self.settings['db']
-        isAuth = db.users.find(
-            {'$and':
-                [
-                    {'groupID' : self.groupID},
-                    {'token' : self.token}
-                    ]
-            }).count()
-        # logging.info('found %s matches for isAuth'%isAuth)
-        return isAuth
+        logging.info('entering isAuth function in BaseHandler')
+        return (dict({'id':self.id, 'token':self.token}) in groups.grouplist)
