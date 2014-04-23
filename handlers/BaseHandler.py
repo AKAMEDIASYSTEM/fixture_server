@@ -14,7 +14,7 @@ import tornado.template
 from bson import json_util
 import ResponseObject
 import traceback
-import ..groups
+import groups
 
 class BaseHandler(tornado.web.RequestHandler):
 
