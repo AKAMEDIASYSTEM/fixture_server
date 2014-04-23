@@ -26,7 +26,8 @@ class FixtureHandler(BaseHandler):
             # timestamp = datetime.datetime.utcnow()
             logging.info(self.request.files['fixture_payload'][0]['body'])
             for line in self.request.files['fixture_payload'][0]['body'].split('\n'):
-                logging.info(line)
+                for entry in line.split(','):
+                    logging.info(entry)
             ''' here is an example line of payload:
             1398221223683,-5.5385894775390625,-0.2913665771484375,7.8047637939453125
             that is: UTC timestamp in millis, X, Y, and Z.
