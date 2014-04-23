@@ -11,7 +11,7 @@ from tornado import gen
 import ResponseObject
 import requests
 
-class SubmitHandler(BaseHandler):
+class FixtureHandler(BaseHandler):
     """Accept a URL and timestamp submission; do topic analysis"""
     def __init__(self, *args, **kwargs):
         BaseHandler.__init__(self,  *args, **kwargs)  
