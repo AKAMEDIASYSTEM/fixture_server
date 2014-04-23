@@ -26,8 +26,10 @@ class FixtureHandler(BaseHandler):
             # timestamp = datetime.datetime.utcnow()
             logging.info(self.request.files['fixture_payload'][0]['body'])
             for line in self.request.files['fixture_payload'][0]['body'].split('\n'):
-                for entry in line.split(','):
-                    logging.info(entry)
+                entries = line.split(',')
+                if entries % 4 == 0: # sanity check to make sure we are dealing with a full deck, so to speak
+                    process(entries)
+                
             ''' here is an example line of payload:
             1398221223683,-5.5385894775390625,-0.2913665771484375,7.8047637939453125
             that is: UTC timestamp in millis, X, Y, and Z.
@@ -59,3 +61,16 @@ class FixtureHandler(BaseHandler):
         toRet = float(outMin + (float(outMax - outMin) * (float(val - inMin) / float(inMax - inMin))))
         # return clamp(toRet, outMin, outMax)
         return toRet
+
+    def process(entries):
+        l = len(entries)/4
+        logging.info('there are %s entries to parse' % l)
+        for i in reversed(range(l-1)):
+            thisTime = entries[i*4-4]
+            thisX = mapVals(entries[i*4-3], -11.0, 11.0, 0.0, 255)
+            thisY = mapVals(entries[i*4-2], -11.0, 11.0, 0.0, 255)
+            thisZ = mapVals(entries[i*4-1], -11.0, 11.0, 0.0, 255)
+            logging.info('mapped x is %s' % thisX)
+            logging.info('mapped y is %s' % thisY)
+            logging.info('mapped z is %s' % thisZ)
+            # sendToSpark()
