@@ -69,9 +69,9 @@ class FixtureHandler(BaseHandler):
         l = len(entries)/4
         logging.info('there are %s entries to parse' % l)
         if l==1:
-            thisX = self.mapVals(entries[1], -11.0, 11.0, 0, 255)
-            thisY = self.mapVals(entries[2], -11.0, 11.0, 0, 255)
-            thisZ = self.mapVals(entries[3], -11.0, 11.0, 0, 255)
+            thisX = self.mapVals(float(entries[1]), -11.0, 11.0, 0, 255)
+            thisY = self.mapVals(float(entries[2]), -11.0, 11.0, 0, 255)
+            thisZ = self.mapVals(float(entries[3]), -11.0, 11.0, 0, 255)
             logging.info('mapped x is %s' % thisX)
             logging.info('mapped y is %s' % thisY)
             logging.info('mapped z is %s' % thisZ)
