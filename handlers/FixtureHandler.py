@@ -64,7 +64,7 @@ class FixtureHandler(BaseHandler):
         # return clamp(toRet, outMin, outMax)
         return toRet
 
-    def process(entries, self):
+    def process(self, entries):
         l = len(entries)/4
         logging.info('there are %s entries to parse' % l)
         for i in reversed(range(l-1)):
@@ -80,7 +80,7 @@ class FixtureHandler(BaseHandler):
             logging.info('about to try to send %s ' % toSend)
             self.updateSpark(toSend)
 
-    def updateSpark(textData, self):
+    def updateSpark(self, textData):
         payment = {'access_token':groups.keylist['spark_token'],'args':textData}
         url = groups.url
         q = requests.post(url,data=payment)
