@@ -75,7 +75,7 @@ class FixtureHandler(BaseHandler):
             logging.info('mapped x is %s' % thisX)
             logging.info('mapped y is %s' % thisY)
             logging.info('mapped z is %s' % thisZ)
-            seq = (thisX, thisY, thisZ)
+            seq = (str(thisX), str(thisY), str(thisZ))
             toSend = ','.join(seq)
             logging.info('about to try to send %s ' % toSend)
             self.updateSpark(toSend)
@@ -83,9 +83,9 @@ class FixtureHandler(BaseHandler):
         for i in reversed(range(l)):
             logging.info('i is %s' % i)
             # thisTime = entries[i*4-4]
-            thisX = self.mapVals(entries[i*4-3], -11.0, 11.0, 0.0, 255)
-            thisY = self.mapVals(entries[i*4-2], -11.0, 11.0, 0.0, 255)
-            thisZ = self.mapVals(entries[i*4-1], -11.0, 11.0, 0.0, 255)
+            thisX = self.mapVals(float(entries[i*4-3]), -11.0, 11.0, 0.0, 255)
+            thisY = self.mapVals(float(entries[i*4-2]), -11.0, 11.0, 0.0, 255)
+            thisZ = self.mapVals(float(entries[i*4-1]), -11.0, 11.0, 0.0, 255)
             logging.info('mapped x is %s' % thisX)
             logging.info('mapped y is %s' % thisY)
             logging.info('mapped z is %s' % thisZ)
