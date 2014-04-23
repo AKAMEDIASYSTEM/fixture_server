@@ -68,17 +68,17 @@ class FixtureHandler(BaseHandler):
         logging.info(entries)
         l = len(entries)/4
         logging.info('there are %s entries to parse' % l)
-        if l==1:
-            thisX = int(self.mapVals(float(entries[1]), -11.0, 11.0, 0, 255))
-            thisY = int(self.mapVals(float(entries[2]), -11.0, 11.0, 0, 255))
-            thisZ = int(self.mapVals(float(entries[3]), -11.0, 11.0, 0, 255))
-            logging.info('mapped x is %s' % thisX)
-            logging.info('mapped y is %s' % thisY)
-            logging.info('mapped z is %s' % thisZ)
-            seq = (str(thisX), str(thisY), str(thisZ))
-            toSend = ','.join(seq)
-            logging.info('about to try to send %s ' % toSend)
-            self.updateSpark(toSend)
+        # if l==1:
+        #     thisX = int(self.mapVals(float(entries[1]), -11.0, 11.0, 0, 255))
+        #     thisY = int(self.mapVals(float(entries[2]), -11.0, 11.0, 0, 255))
+        #     thisZ = int(self.mapVals(float(entries[3]), -11.0, 11.0, 0, 255))
+        #     logging.info('mapped x is %s' % thisX)
+        #     logging.info('mapped y is %s' % thisY)
+        #     logging.info('mapped z is %s' % thisZ)
+        #     seq = (str(thisX), str(thisY), str(thisZ))
+        #     toSend = ','.join(seq)
+        #     logging.info('about to try to send %s ' % toSend)
+        #     self.updateSpark(toSend)
 
         for i in reversed(range(l)):
             logging.info('i is %s' % i)
