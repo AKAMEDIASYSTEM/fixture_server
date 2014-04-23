@@ -31,7 +31,8 @@ if __name__ == '__main__':
     static_path = os.path.join(this_dir, 'static')
     application = tornado.web.Application([
             (r'/fixture', FixtureHandler),
-        ], db=db)
+        # ], db=db)
+        ])
 
     static_path=static_path
     debug=tornado.options.options.debug
