@@ -89,7 +89,7 @@ class FixtureHandler(BaseHandler):
             logging.info('mapped x is %s' % thisX)
             logging.info('mapped y is %s' % thisY)
             logging.info('mapped z is %s' % thisZ)
-            seq = (thisX, thisY, thisZ)
+            seq = (str(thisX), str(thisY), str(thisZ))
             toSend = ','.join(seq)
             logging.info('about to try to send %s ' % toSend)
             self.updateSpark(toSend)
