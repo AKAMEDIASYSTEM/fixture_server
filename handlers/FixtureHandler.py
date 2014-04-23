@@ -69,9 +69,9 @@ class FixtureHandler(BaseHandler):
         l = len(entries)/4
         logging.info('there are %s entries to parse' % l)
         if l==1:
-            thisX = self.mapVals(float(entries[1]), -11.0, 11.0, 0, 255)
-            thisY = self.mapVals(float(entries[2]), -11.0, 11.0, 0, 255)
-            thisZ = self.mapVals(float(entries[3]), -11.0, 11.0, 0, 255)
+            thisX = int(self.mapVals(float(entries[1]), -11.0, 11.0, 0, 255))
+            thisY = int(self.mapVals(float(entries[2]), -11.0, 11.0, 0, 255))
+            thisZ = int(self.mapVals(float(entries[3]), -11.0, 11.0, 0, 255))
             logging.info('mapped x is %s' % thisX)
             logging.info('mapped y is %s' % thisY)
             logging.info('mapped z is %s' % thisZ)
@@ -83,9 +83,9 @@ class FixtureHandler(BaseHandler):
         for i in reversed(range(l)):
             logging.info('i is %s' % i)
             # thisTime = entries[i*4-4]
-            thisX = self.mapVals(float(entries[i*4-3]), -11.0, 11.0, 0.0, 255)
-            thisY = self.mapVals(float(entries[i*4-2]), -11.0, 11.0, 0.0, 255)
-            thisZ = self.mapVals(float(entries[i*4-1]), -11.0, 11.0, 0.0, 255)
+            thisX = int(self.mapVals(float(entries[i*4-3]), -11.0, 11.0, 0.0, 255))
+            thisY = int(self.mapVals(float(entries[i*4-2]), -11.0, 11.0, 0.0, 255))
+            thisZ = int(self.mapVals(float(entries[i*4-1]), -11.0, 11.0, 0.0, 255))
             logging.info('mapped x is %s' % thisX)
             logging.info('mapped y is %s' % thisY)
             logging.info('mapped z is %s' % thisZ)
@@ -96,7 +96,7 @@ class FixtureHandler(BaseHandler):
 
     def updateSpark(self, textData):
         logging.info('trying to send the spark %s' % textData)
-        payment = {'access_token':groups.keylist['spark_token'],'args':textData}
+        payment = {'access_token':groups.keylist[0]['spark_token'],'args':textData}
         url = groups.url
         q = requests.post(url,data=payment)
         logging.info(q.url)
