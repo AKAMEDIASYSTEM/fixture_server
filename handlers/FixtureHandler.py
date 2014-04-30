@@ -12,6 +12,27 @@ import ResponseObject
 import requests
 import groups
 
+'''
+implementing this on your own? You need a file called groups.py with your keys.
+
+this is what groups.py should look like. It should be one directory above FixtureHandler.py.
+
+#!/usr/bin/env python
+# fixture - remote presence
+# 2014 AKA MEDIA SYSTEM
+grouplist = [
+    {'id':'YOUR_ID', 'token':'A_SECRET_TOKEN_YOU_MADE_UP'},
+    {'id':'ANOTHER_ID_IF_YOU_WANT', 'token':'ANOTHER_SCRET_TOKEN'}
+]
+
+keylist = [
+    {'spark_token':'GET_THIS_FROM_SPARK'}
+]
+
+url = 'https://api.spark.io/v1/devices/THE_ID_OF_YOUR_SPARK_CORE/update'
+
+'''
+
 class FixtureHandler(BaseHandler):
 
     """Accept a file (CSV) with accelerometer samples in it"""
