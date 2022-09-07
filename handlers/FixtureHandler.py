@@ -5,7 +5,6 @@
 from handlers.BaseHandler import BaseHandler
 import logging
 import datetime
-from bson import json_util
 import tornado
 from tornado import gen
 import ResponseObject

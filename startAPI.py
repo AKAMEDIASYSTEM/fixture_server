@@ -5,7 +5,6 @@
 import datetime
 import logging
 import os
-from pymongo import MongoClient
 import tornado
 import tornado.ioloop
 import tornado.web
@@ -25,8 +24,6 @@ if __name__ == '__main__':
     tornado.options.logging = 'debug'
     tornado.options.parse_command_line()
 
-    # client = MongoClient(tz_aware=True)
-    # db = client.listening_table
     this_dir = os.path.dirname(__file__)
     static_path = os.path.join(this_dir, 'static')
     application = tornado.web.Application([
