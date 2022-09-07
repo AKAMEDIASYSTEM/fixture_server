@@ -1,0 +1,15 @@
+[Unit]
+Description=AKA fixture_server service
+After=nginx.service
+Requires=nginx.service
+
+[Service]
+Type=simple
+WorkingDirectory=~/fixture_server/
+ExecStart=/usr/bin/python startAPI.py
+Restart=always
+RestartSec=5
+KillMode=process
+
+[Install]
+WantedBy=multi-user.target
