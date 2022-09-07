@@ -38,8 +38,8 @@ class FixtureHandler(BaseHandler):
     def __init__(self, *args, **kwargs):
         BaseHandler.__init__(self,  *args, **kwargs)  
 
-    @tornado.web.asynchronous
-    @tornado.gen.coroutine
+    # @tornado.web.asynchronous
+    # @tornado.gen.coroutine
     def post(self):
         
         logging.debug('hit the fixture endpoint')
