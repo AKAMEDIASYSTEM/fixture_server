@@ -20,6 +20,8 @@ class BaseHandler(tornado.web.RequestHandler):
 
     def __init__(self, *args, **kwargs):
         logging.debug('entering init funciton of BaseHandler')
+        # logging.debug(str(self.request))
+        self.async_file = None
         try:
             tornado.web.RequestHandler.__init__(self,  *args, **kwargs)
             self.set_header("Access-Control-Allow-Origin", "*")
