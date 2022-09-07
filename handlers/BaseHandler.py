@@ -29,15 +29,15 @@ class BaseHandler(tornado.web.RequestHandler):
             self.id = self.get_argument('id')
             self.response = ResponseObject.ResponseObject()
         except Exception as reason:
-            print reason, traceback.format_exc()
+            print( reason, traceback.format_exc())
 
     
     def write_response(self):
         try:
             self.write(self.response.response)
         except Exception as reason:
-            print reason, traceback.format_exc()
-            print self.response.response
+            print( reason, traceback.format_exc())
+            print( self.response.response)
 
     def isAuth(self):
         logging.info('entering isAuth function in BaseHandler')

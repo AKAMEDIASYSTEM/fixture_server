@@ -1,6 +1,7 @@
 #!/usr/bin/env python
 # fixture - remote presence
 # 2014 AKA MEDIA SYSTEM
+# 2022 resurrected
 
 import datetime
 import logging
@@ -13,8 +14,6 @@ import tornado.template
 
 
 from handlers.FixtureHandler import FixtureHandler
-
-
 
 if __name__ == '__main__':
 
