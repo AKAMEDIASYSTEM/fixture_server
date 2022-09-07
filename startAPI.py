@@ -33,6 +33,6 @@ if __name__ == '__main__':
     static_path=static_path
     debug=tornado.options.options.debug
 
-    logging.info('Listening on http://localhost:80')
-    application.listen(80)
+    logging.info('Listening on http://localhost:8888')
+    application.listen(8888)
     tornado.ioloop.IOLoop.instance().start()
