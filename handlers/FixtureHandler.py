@@ -43,6 +43,7 @@ class FixtureHandler(BaseHandler):
     def post(self):
         
         logging.debug('hit the fixture endpoint')
+        logging.debug(self.request.files)
         if self.isAuth():
             logging.info('we are authenticated and ready to debug data')
             # timestamp = datetime.datetime.utcnow()
@@ -101,7 +102,8 @@ class FixtureHandler(BaseHandler):
             seq = (str(thisX), str(thisY), str(thisZ))
             toSend = ','.join(seq)
             logging.info('about to try to send %s ' % toSend)
-            self.updateSpark(toSend)
+            logging.info('just kidding we have not set this next part up yet')
+            # self.updateSpark(toSend)
 
     def updateSpark(self, textData):
         logging.info('trying to send the spark %s' % textData)
