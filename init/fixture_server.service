@@ -6,7 +6,7 @@ Requires=nginx.service
 [Service]
 Type=simple
 WorkingDirectory=/home/aka/fixture_server/
-ExecStart=/usr/bin/python startAPI.py
+ExecStart=/usr/bin/python startAPI.py --logging=debug
 Restart=always
 RestartSec=5
 KillMode=process
