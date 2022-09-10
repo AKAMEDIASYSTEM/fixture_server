@@ -42,8 +42,8 @@ class FixtureHandler(BaseHandler):
     # @tornado.gen.coroutine
     def post(self):
         
-        logging.debug('hit the fixture endpoint')
-        logging.debug(self.request.files)
+        logging.info('hit the fixture endpoint')
+        logging.info(self.request.files)
         if self.isAuth():
             logging.info('we are authenticated and ready to debug data')
             # timestamp = datetime.datetime.utcnow()
@@ -87,7 +87,7 @@ class FixtureHandler(BaseHandler):
 
     def process(self, entries):
         logging.info(entries)
-        l = len(entries)/4
+        l = int(len(entries)/4)
         logging.info('there are %s entries to parse' % l)
 
         for i in reversed(range(l)):
