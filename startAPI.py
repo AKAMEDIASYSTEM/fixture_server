@@ -28,7 +28,7 @@ if __name__ == '__main__':
     static_path = os.path.join(this_dir, 'static')
     application = tornado.web.Application([
             (r'/fixture', FixtureHandler),
-            (r'/fixget/, FixtureGiver')
+            (r'/fixget', FixtureGiver)
         ], lastState=lastState)
         # ])
 
