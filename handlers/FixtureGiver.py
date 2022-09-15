@@ -40,7 +40,7 @@ class FixtureGiver(BaseHandler):
         return toRet
 
     def get(self):
-        logging.info("someone hit the fixture GET endpoint")
+        logging.info("someone hit the fixtGET GET endpoint")
         if self.isAuth():
             logging.info("they are authorized to hit the GET endpoint")
             logging.info(self.lastState)

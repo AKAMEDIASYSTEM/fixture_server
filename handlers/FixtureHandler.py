@@ -83,7 +83,7 @@ class FixtureHandler(BaseHandler):
             logging.info('mapped x is %s' % pX)
             logging.info('mapped y is %s' % pY)
             logging.info('mapped z is %s' % pZ)
-            self.lastState = {pX, pY, pZ}
+            self.lastState = [pX, pY, pZ]
             seq = (str(pX), str(pY), str(pZ))
             toSend = ','.join(seq)
             logging.info('done processing %s ' % self.lastState)
