@@ -21,7 +21,6 @@ class BaseHandler(tornado.web.RequestHandler):
         logging.debug('entering init funciton of BaseHandler')
         # logging.debug(str(self.request))
         self.async_file = None
-        lastState = self.settings['lastState']
         try:
             tornado.web.RequestHandler.__init__(self,  *args, **kwargs)
             self.set_header("Access-Control-Allow-Origin", "*")
@@ -30,6 +29,7 @@ class BaseHandler(tornado.web.RequestHandler):
             self.id = self.get_argument('id')
             self.payload = self.get_argument('fixture_payload')
             self.response = ResponseObject.ResponseObject()
+            lastState = self.settings['lastState']
         except Exception as reason:
             print( reason, traceback.format_exc())
 
