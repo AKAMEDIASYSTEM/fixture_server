@@ -14,6 +14,7 @@ import tornado.template
 
 
 from handlers.FixtureHandler import FixtureHandler
+from handlers.FixtureGiver import FixtureGiver
 
 if __name__ == '__main__':
 
@@ -22,13 +23,14 @@ if __name__ == '__main__':
     ))
     tornado.options.logging = 'debug'
     tornado.options.parse_command_line()
-
+    lastState = {0,0,0}
     this_dir = os.path.dirname(__file__)
     static_path = os.path.join(this_dir, 'static')
     application = tornado.web.Application([
             (r'/fixture', FixtureHandler),
-        # ], db=db)
-        ])
+            (r'/fixget/, FixtureGiver')
+        ], lastState=lastState)
+        # ])
 
     static_path=static_path
     debug=tornado.options.options.debug

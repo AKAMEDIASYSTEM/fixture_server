@@ -36,10 +36,7 @@ class FixtureHandler(BaseHandler):
 
     """Accept a file (CSV) with accelerometer samples in it"""
     def __init__(self, *args, **kwargs):
-        BaseHandler.__init__(self,  *args, **kwargs)
-        pX = 0 # ie, "processed X"
-        pY = 0
-        pZ = 0  
+        BaseHandler.__init__(self,  *args, **kwargs)  
 
     # @tornado.web.asynchronous
     # @tornado.gen.coroutine
@@ -70,7 +67,7 @@ class FixtureHandler(BaseHandler):
         return toRet
 
     def get(self):
-        logging.info("hit someone hit the fixture GET endpoint")
+        logging.info("someone hit the fixture GET endpoint")
         if self.isAuth():
             logging.info("they are authorized to hit the GET endpoint")
         else:
@@ -91,6 +88,7 @@ class FixtureHandler(BaseHandler):
             logging.info('mapped x is %s' % pX)
             logging.info('mapped y is %s' % pY)
             logging.info('mapped z is %s' % pZ)
+            lastState = {pX, pY, pZ}
             seq = (str(pX), str(pY), str(pZ))
             toSend = ','.join(seq)
-            logging.info('done processing %s ' % toSend)
+            logging.info('done processing %s ' % lastState)
