@@ -47,8 +47,8 @@ class FixtureHandler(BaseHandler):
         if self.isAuth():
             logging.info('we are authenticated and ready to debug data')
             # timestamp = datetime.datetime.utcnow()
-            logging.info(self.fixture_payload.decode('utf-8'))
-            for line in self.fixture_payload.decode('utf-8').split('\n'):
+            logging.info(self.payload.decode('utf-8'))
+            for line in self.payload.decode('utf-8').split('\n'):
                 entries = line.split(',')
                 if len(entries) % 4 == 0: # sanity check to make sure we are dealing with a full deck, so to speak
                     self.process(entries)
