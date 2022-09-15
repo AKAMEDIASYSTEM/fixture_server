@@ -24,19 +24,14 @@ grouplist = [
     {'id':'ANOTHER_ID_IF_YOU_WANT', 'token':'ANOTHER_SCRET_TOKEN'}
 ]
 
-keylist = [
-    {'spark_token':'GET_THIS_FROM_SPARK'}
-]
-
-url = 'https://api.spark.io/v1/devices/THE_ID_OF_YOUR_SPARK_CORE/update'
-
 '''
 
 class FixtureHandler(BaseHandler):
 
     """Accept a file (CSV) with accelerometer samples in it"""
     def __init__(self, *args, **kwargs):
-        BaseHandler.__init__(self,  *args, **kwargs)  
+        BaseHandler.__init__(self,  *args, **kwargs)
+        logging.info(self.lastState)  
 
     # @tornado.web.asynchronous
     # @tornado.gen.coroutine
