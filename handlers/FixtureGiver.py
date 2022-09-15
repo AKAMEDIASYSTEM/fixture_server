@@ -10,6 +10,7 @@ from tornado import gen
 import ResponseObject
 import requests
 import groups
+import state
 
 '''
 implementing this on your own? You need a file called groups.py with your keys.
@@ -43,7 +44,7 @@ class FixtureGiver(BaseHandler):
         logging.info("someone hit the fixtGET GET endpoint")
         if self.isAuth():
             logging.info("they are authorized to hit the GET endpoint")
-            logging.info(self.lastState)
+            logging.info(state.lastState)
         else:
             logging.info("we rejected a GET attempt due to failed authentication")
             logging.info(self.token)

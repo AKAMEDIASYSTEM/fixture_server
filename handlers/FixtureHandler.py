@@ -10,6 +10,7 @@ from tornado import gen
 import ResponseObject
 import requests
 import groups
+import state
 
 '''
 implementing this on your own? You need a file called groups.py with your keys.
@@ -31,7 +32,7 @@ class FixtureHandler(BaseHandler):
     """Accept a file (CSV) with accelerometer samples in it"""
     def __init__(self, *args, **kwargs):
         BaseHandler.__init__(self,  *args, **kwargs)
-        logging.info(self.lastState)  
+        logging.info(state.lastState)  
 
     # @tornado.web.asynchronous
     # @tornado.gen.coroutine
@@ -65,7 +66,7 @@ class FixtureHandler(BaseHandler):
         logging.info("someone hit the fixture GET endpoint")
         if self.isAuth():
             logging.info("they are authorized to hit the GET endpoint")
-            logging.info(self.lastState)
+            logging.info(state.lastState)
         else:
             logging.info("we rejected a GET attempt due to failed authentication")
             logging.info(self)
@@ -84,7 +85,7 @@ class FixtureHandler(BaseHandler):
             logging.info('mapped x is %s' % pX)
             logging.info('mapped y is %s' % pY)
             logging.info('mapped z is %s' % pZ)
-            self.lastState = [pX, pY, pZ]
+            state.lastState = [pX, pY, pZ]
             seq = (str(pX), str(pY), str(pZ))
             toSend = ','.join(seq)
             logging.info('done processing %s ' % self.lastState)
