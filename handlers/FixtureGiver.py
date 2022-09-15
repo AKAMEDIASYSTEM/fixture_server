@@ -33,9 +33,6 @@ class FixtureGiver(BaseHandler):
     """Accept a file (CSV) with accelerometer samples in it"""
     def __init__(self, *args, **kwargs):
         BaseHandler.__init__(self,  *args, **kwargs)
-        pX = 0 # ie, "processed X"
-        pY = 0
-        pZ = 0  
 
     def mapVals(self, val, inMin, inMax, outMin, outMax):
         toRet = float(outMin + (float(outMax - outMin) * (float(val - inMin) / float(inMax - inMin))))
@@ -46,6 +43,7 @@ class FixtureGiver(BaseHandler):
         logging.info("someone hit the fixture GET endpoint")
         if self.isAuth():
             logging.info("they are authorized to hit the GET endpoint")
+            logging.info(lastState)
         else:
             logging.info("we rejected a GET attempt due to failed authentication")
             logging.info(self.token)
