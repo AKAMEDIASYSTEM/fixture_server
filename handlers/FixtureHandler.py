@@ -36,12 +36,14 @@ class FixtureHandler(BaseHandler):
 
     """Accept a file (CSV) with accelerometer samples in it"""
     def __init__(self, *args, **kwargs):
-        BaseHandler.__init__(self,  *args, **kwargs)  
+        BaseHandler.__init__(self,  *args, **kwargs)
+        int pX = 0 # ie, "processed X"
+        int pY = 0
+        int pZ = 0  
 
     # @tornado.web.asynchronous
     # @tornado.gen.coroutine
     def post(self):
-        
         logging.info('hit the fixture endpoint')
         # logging.info(self.request)
         if self.isAuth():
@@ -58,23 +60,6 @@ class FixtureHandler(BaseHandler):
             that is: UTC timestamp in millis, X, Y, and Z.
             X, Y, and Z are in degrees ranging (-180,180)
             Map this to the (0,255) range for RGB Neopixel values.
-
-            for line in fixture_payload[0]['body']:
-                vars = line.split(',')
-                look at the timestamp, vars[0]
-                if the timestamp is more than INTERVAL from last update sent:
-                    # this means we have been motionless for longer than INTERVAL, so we should send (thisTimestamp-lastTimestamp)/INTERVAL duplicate updates
-                    # so the neopixel reports the right amount of motionlessness
-                    updateSpark(last_scaledX, last_scaledY, last_scaledZ)
-                else:
-                    # we are up-to-date, send this one out
-                    scaledX = map(vars[0])
-                    scaledY = map(vars[1])
-                    scaledZ = map(vars[2])
-                    updateSpark(scaledX, scaledY, scaledZ)
-                    last_scaledX = map(vars[0])
-                    last_scaledY = map(vars[1])
-                    last_scaledZ = map(vars[2])
             '''
         else:
             self.write('Something is wack in FixtureHandler, self.isAuth wasnt True.')
@@ -84,6 +69,14 @@ class FixtureHandler(BaseHandler):
         # return clamp(toRet, outMin, outMax)
         return toRet
 
+    def get(self):
+        logging.info("hit someone hit the fixture GET endpoint")
+        if self.isAuth():
+            logging.info("they are authorized to hit the GET endpoint")
+        else:
+            logging.info("we rejected a GET attempt due to failed authentication")
+            logging.info(self)
+
     def process(self, entries):
         logging.info(entries)
         l = int(len(entries)/4)
@@ -92,12 +85,12 @@ class FixtureHandler(BaseHandler):
         for i in reversed(range(l)):
             logging.info('i is %s' % i)
             # thisTime = entries[i*4-4]
-            thisX = int(self.mapVals(float(entries[i*4-3]), -180.0, 180.0, 0.0, 255))
-            thisY = int(self.mapVals(float(entries[i*4-2]), -180.0, 180.0, 0.0, 255))
-            thisZ = int(self.mapVals(float(entries[i*4-1]), -180.0, 180.0, 0.0, 255))
-            logging.info('mapped x is %s' % thisX)
-            logging.info('mapped y is %s' % thisY)
-            logging.info('mapped z is %s' % thisZ)
-            seq = (str(thisX), str(thisY), str(thisZ))
+            pX = int(self.mapVals(float(entries[i*4-3]), -180.0, 180.0, 0.0, 255))
+            pY = int(self.mapVals(float(entries[i*4-2]), -180.0, 180.0, 0.0, 255))
+            pZ = int(self.mapVals(float(entries[i*4-1]), -180.0, 180.0, 0.0, 255))
+            logging.info('mapped x is %s' % pX)
+            logging.info('mapped y is %s' % pY)
+            logging.info('mapped z is %s' % pZ)
+            seq = (str(pX), str(pY), str(pZ))
             toSend = ','.join(seq)
             logging.info('done processing %s ' % toSend)
