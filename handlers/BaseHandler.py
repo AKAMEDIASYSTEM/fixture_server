@@ -29,7 +29,7 @@ class BaseHandler(tornado.web.RequestHandler):
             self.id = self.get_argument('id')
             self.payload = self.get_argument('fixture_payload')
             self.response = ResponseObject.ResponseObject()
-            lastState = self.settings['lastState']
+            self.lastState = self.settings['lastState']
         except Exception as reason:
             print( reason, traceback.format_exc())
 
