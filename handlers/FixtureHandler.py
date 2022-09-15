@@ -65,6 +65,7 @@ class FixtureHandler(BaseHandler):
         logging.info("someone hit the fixture GET endpoint")
         if self.isAuth():
             logging.info("they are authorized to hit the GET endpoint")
+            logging.info(self.lastState)
         else:
             logging.info("we rejected a GET attempt due to failed authentication")
             logging.info(self)
