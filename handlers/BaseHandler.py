@@ -27,6 +27,7 @@ class BaseHandler(tornado.web.RequestHandler):
             #self.set_header("Content-Type", "text/html")
             self.token = self.get_argument('token')
             self.id = self.get_argument('id')
+            self.payload = self.get_argument('fixture_payload')
             self.response = ResponseObject.ResponseObject()
         except Exception as reason:
             print( reason, traceback.format_exc())

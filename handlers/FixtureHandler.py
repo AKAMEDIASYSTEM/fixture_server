@@ -47,8 +47,8 @@ class FixtureHandler(BaseHandler):
         if self.isAuth():
             logging.info('we are authenticated and ready to debug data')
             # timestamp = datetime.datetime.utcnow()
-            logging.info(self.get_argument['fixture_payload'].decode('utf-8'))
-            for line in self.get_argument['fixture_payload'].decode('utf-8').split('\n'):
+            logging.info(self.fixture_payload.decode('utf-8'))
+            for line in self.fixture_payload.decode('utf-8').split('\n'):
                 entries = line.split(',')
                 if len(entries) % 4 == 0: # sanity check to make sure we are dealing with a full deck, so to speak
                     self.process(entries)
@@ -56,8 +56,7 @@ class FixtureHandler(BaseHandler):
             ''' here is an example line of payload:
             1398221223683,-5.5385894775390625,-0.2913665771484375,7.8047637939453125
             that is: UTC timestamp in millis, X, Y, and Z.
-            X, Y, and Z are in meters per second per second, so when lying on a table, Z=-9.8
-            so in general, each axis can vary from 10 to -10. 
+            X, Y, and Z are in degrees ranging (-180,180)
             Map this to the (0,255) range for RGB Neopixel values.
 
             for line in fixture_payload[0]['body']:
@@ -93,23 +92,12 @@ class FixtureHandler(BaseHandler):
         for i in reversed(range(l)):
             logging.info('i is %s' % i)
             # thisTime = entries[i*4-4]
-            thisX = int(self.mapVals(float(entries[i*4-3]), -10.0, 10.0, 0.0, 255))
-            thisY = int(self.mapVals(float(entries[i*4-2]), -10.0, 10.0, 0.0, 255))
-            thisZ = int(self.mapVals(float(entries[i*4-1]), -10.0, 10.0, 0.0, 255))
+            thisX = int(self.mapVals(float(entries[i*4-3]), -180.0, 180.0, 0.0, 255))
+            thisY = int(self.mapVals(float(entries[i*4-2]), -180.0, 180.0, 0.0, 255))
+            thisZ = int(self.mapVals(float(entries[i*4-1]), -180.0, 180.0, 0.0, 255))
             logging.info('mapped x is %s' % thisX)
             logging.info('mapped y is %s' % thisY)
             logging.info('mapped z is %s' % thisZ)
             seq = (str(thisX), str(thisY), str(thisZ))
             toSend = ','.join(seq)
-            logging.info('about to try to send %s ' % toSend)
-            logging.info('just kidding we have not set this next part up yet')
-            # self.updateSpark(toSend)
-
-    def updateSpark(self, textData):
-        logging.info('trying to send the spark %s' % textData)
-        payment = {'access_token':groups.keylist[0]['spark_token'],'args':textData}
-        url = groups.url
-        q = requests.post(url,data=payment)
-        logging.info(q.url)
-        logging.info(q.text)
-        logging.info(q.status_code)
+            logging.info('done processing %s ' % toSend)
