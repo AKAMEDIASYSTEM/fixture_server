@@ -43,12 +43,12 @@ class FixtureHandler(BaseHandler):
     def post(self):
         
         logging.info('hit the fixture endpoint')
-        logging.info(self)
+        logging.info(self.request)
         if self.isAuth():
             logging.info('we are authenticated and ready to debug data')
             # timestamp = datetime.datetime.utcnow()
-            logging.info(self.get_argument['fixture_payload'].decode('utf-8'))
-            for line in self.get_argument['fixture_payload'].decode('utf-8').split('\n'):
+            logging.info(self.request.get_argument['fixture_payload'].decode('utf-8'))
+            for line in self.request.get_argument['fixture_payload'].decode('utf-8').split('\n'):
                 entries = line.split(',')
                 if len(entries) % 4 == 0: # sanity check to make sure we are dealing with a full deck, so to speak
                     self.process(entries)
