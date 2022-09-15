@@ -37,9 +37,9 @@ class FixtureHandler(BaseHandler):
     """Accept a file (CSV) with accelerometer samples in it"""
     def __init__(self, *args, **kwargs):
         BaseHandler.__init__(self,  *args, **kwargs)
-        int pX = 0 # ie, "processed X"
-        int pY = 0
-        int pZ = 0  
+        pX = 0 # ie, "processed X"
+        pY = 0
+        pZ = 0  
 
     # @tornado.web.asynchronous
     # @tornado.gen.coroutine
