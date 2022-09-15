@@ -21,6 +21,7 @@ class BaseHandler(tornado.web.RequestHandler):
         logging.debug('entering init funciton of BaseHandler')
         # logging.debug(str(self.request))
         self.async_file = None
+        lastState = self.settings['lastState']
         try:
             tornado.web.RequestHandler.__init__(self,  *args, **kwargs)
             self.set_header("Access-Control-Allow-Origin", "*")
@@ -41,6 +42,6 @@ class BaseHandler(tornado.web.RequestHandler):
             print( self.response.response)
 
     def isAuth(self):
-        logging.info('entering isAuth function in BaseHandler')
-        logging.info(self.token)
+        # logging.info('entering isAuth function in BaseHandler')
+        # logging.info(self.token)
         return (dict({'id':self.id, 'token':self.token}) in groups.grouplist)
