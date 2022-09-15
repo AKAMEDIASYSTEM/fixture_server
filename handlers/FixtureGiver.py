@@ -48,22 +48,5 @@ class FixtureGiver(BaseHandler):
             logging.info("they are authorized to hit the GET endpoint")
         else:
             logging.info("we rejected a GET attempt due to failed authentication")
-            logging.info(self)
+            logging.info(self.token)
 
-    def process(self, entries):
-        logging.info(entries)
-        l = int(len(entries)/4)
-        logging.info('there are %s entries to parse' % l)
-
-        for i in reversed(range(l)):
-            logging.info('i is %s' % i)
-            # thisTime = entries[i*4-4]
-            pX = int(self.mapVals(float(entries[i*4-3]), -180.0, 180.0, 0.0, 255))
-            pY = int(self.mapVals(float(entries[i*4-2]), -180.0, 180.0, 0.0, 255))
-            pZ = int(self.mapVals(float(entries[i*4-1]), -180.0, 180.0, 0.0, 255))
-            logging.info('mapped x is %s' % pX)
-            logging.info('mapped y is %s' % pY)
-            logging.info('mapped z is %s' % pZ)
-            seq = (str(pX), str(pY), str(pZ))
-            toSend = ','.join(seq)
-            logging.info('done processing %s ' % toSend)
