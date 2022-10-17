@@ -25,8 +25,6 @@ grouplist = [
     {'id':'ANOTHER_ID_IF_YOU_WANT', 'token':'ANOTHER_SCRET_TOKEN'}
 ]
 
-
-
 '''
 
 class FixtureGiver(BaseHandler):

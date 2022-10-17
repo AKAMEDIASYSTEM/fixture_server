@@ -39,6 +39,7 @@ class FixtureHandler(BaseHandler):
     def post(self):
         logging.info('hit the fixture endpoint')
         # logging.info(self.request)
+        self.payload = self.get_argument('fixture_payload')
         if self.isAuth():
             logging.info('we are authenticated and ready to debug data')
             # timestamp = datetime.datetime.utcnow()
