@@ -44,4 +44,4 @@ class BaseHandler(tornado.web.RequestHandler):
     def isAuth(self):
         # logging.info('entering isAuth function in BaseHandler')
         # logging.info(self.token)
-        return (dict({'id':self.id, 'token':self.token}) in groups.grouplist)
+        return (self.id if dict({'id':self.id, 'token':self.token}) in groups.grouplist else False)
