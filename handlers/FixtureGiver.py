@@ -39,12 +39,13 @@ class FixtureGiver(BaseHandler):
         return toRet
 
     def get(self):
-        logging.info("someone hit the fixtGET GET endpoint")
+        logging.info("hit the fixtureGIVER GET endpoint")
         theUser = self.isAuth()
         if theUser:
             logging.info("they are authorized to hit the GET endpoint")
             logging.info(state.userStates[theUser])
-            self.write(str(state.userStates[theUser]))
+            responseString = str(state.userStates[theUser][0]+"|"+state.userStates[theUser][1]+"|"+state.userStates[theUser][2])
+            self.write(responseString)
         else:
             logging.info("we rejected a GET attempt due to failed authentication")
             logging.info(self.token)

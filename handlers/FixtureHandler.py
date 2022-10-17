@@ -32,12 +32,11 @@ class FixtureHandler(BaseHandler):
     """Accept a file (CSV) with accelerometer samples in it"""
     def __init__(self, *args, **kwargs):
         BaseHandler.__init__(self,  *args, **kwargs)
-        logging.info(state.lastState)  
 
     # @tornado.web.asynchronous
     # @tornado.gen.coroutine
     def post(self):
-        logging.info('hit the fixture endpoint')
+        logging.info('hit the fixtureHandler endpoint')
         # logging.info(self.request)
         self.payload = self.get_argument('fixture_payload')
         myUser = self.isAuth()
