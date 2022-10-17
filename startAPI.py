@@ -11,6 +11,7 @@ import tornado.ioloop
 import tornado.web
 import tornado.options
 import tornado.template
+import groups
 
 
 from handlers.FixtureHandler import FixtureHandler
