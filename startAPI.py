@@ -20,14 +20,14 @@ from handlers.FixtureGiver import FixtureGiver
 
 if __name__ == '__main__':
     for g in groups.grouplist:
-        state.userStates[g['id']] = [0.0,0.0,0.0]
+        state.userStates[g['id']] = [0,0,0]
     logging.info(state.userStates)
     tornado.options.define('debug', default=True, type=bool, help=(
         "Turn on autoreload"
     ))
     tornado.options.logging = 'debug'
     tornado.options.parse_command_line()
-    lastState = [0.0,0.0,0.0]
+    lastState = [0,0,0]
     this_dir = os.path.dirname(__file__)
     static_path = os.path.join(this_dir, 'static')
     application = tornado.web.Application([
