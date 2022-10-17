@@ -21,7 +21,7 @@ from handlers.FixtureGiver import FixtureGiver
 if __name__ == '__main__':
     for g in groups.grouplist:
         state.userStates[g['id']] = [0.0,0.0,0.0]
-    logging.info(states.userStates)
+    logging.info(state.userStates)
     tornado.options.define('debug', default=True, type=bool, help=(
         "Turn on autoreload"
     ))
