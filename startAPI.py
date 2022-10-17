@@ -12,6 +12,7 @@ import tornado.web
 import tornado.options
 import tornado.template
 import groups
+import state
 
 
 from handlers.FixtureHandler import FixtureHandler
