@@ -44,7 +44,7 @@ class FixtureHandler(BaseHandler):
         if myUser:
             logging.info('we are authenticated and ready to debug data')
             # timestamp = datetime.datetime.utcnow()
-            logging.info(self.payload)
+            # logging.info(self.payload)
             for line in self.payload.split('\n'):
                 entries = line.split(',')
                 if len(entries) % 4 == 0: # sanity check to make sure we are dealing with a full deck, so to speak
@@ -77,19 +77,18 @@ class FixtureHandler(BaseHandler):
     def process(self, entries, theUser):
         logging.info(entries)
         l = int(len(entries)/4)
-        logging.info('there are %s entries to parse' % l)
-
+        # logging.info('there are %s entries to parse' % l)
         for i in reversed(range(l)):
-            logging.info('i is %s' % i)
+            # logging.info('i is %s' % i)
             # thisTime = entries[i*4-4]
             pX = int(self.mapVals(float(entries[i*4-3]), -180.0, 180.0, 0.0, 255))
             pY = int(self.mapVals(float(entries[i*4-2]), -180.0, 180.0, 0.0, 255))
             pZ = int(self.mapVals(float(entries[i*4-1]), -180.0, 180.0, 0.0, 255))
-            logging.info('mapped x is %s' % pX)
-            logging.info('mapped y is %s' % pY)
-            logging.info('mapped z is %s' % pZ)
-            state.lastState = [pX, pY, pZ]
-            state.userStates[theUser]
+            # logging.info('mapped x is %s' % pX)
+            # logging.info('mapped y is %s' % pY)
+            # logging.info('mapped z is %s' % pZ)
+            # state.lastState = [pX, pY, pZ]
+            state.userStates[theUser] = [pX, pY, pZ]
             seq = (str(pX), str(pY), str(pZ))
             toSend = ','.join(seq)
             logging.info('done processing %s ' % state.lastState)
