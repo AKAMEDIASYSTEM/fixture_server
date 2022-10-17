@@ -89,6 +89,6 @@ class FixtureHandler(BaseHandler):
             # logging.info('mapped z is %s' % pZ)
             # state.lastState = [pX, pY, pZ]
             state.userStates[theUser] = [pX, pY, pZ]
-            seq = (str(pX), str(pY), str(pZ))
-            toSend = ','.join(seq)
-            logging.info('done processing %s ' % state.lastState)
+            # seq = (str(pX), str(pY), str(pZ))
+            # toSend = ','.join(seq)
+            logging.info('done processing %s ' % state.userStates[theUser])
