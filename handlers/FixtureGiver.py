@@ -44,7 +44,7 @@ class FixtureGiver(BaseHandler):
         if theUser:
             logging.info("they are authorized to hit the GET endpoint")
             logging.info(state.userStates[theUser])
-            return str(state.userStates[theUser])
+            self.write(str(state.userStates[theUser]))
         else:
             logging.info("we rejected a GET attempt due to failed authentication")
             logging.info(self.token)
