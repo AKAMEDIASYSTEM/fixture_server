@@ -40,14 +40,15 @@ class FixtureHandler(BaseHandler):
         logging.info('hit the fixture endpoint')
         # logging.info(self.request)
         self.payload = self.get_argument('fixture_payload')
-        if self.isAuth():
+        myUser = self.isAuth()
+        if myUser:
             logging.info('we are authenticated and ready to debug data')
             # timestamp = datetime.datetime.utcnow()
             logging.info(self.payload)
             for line in self.payload.split('\n'):
                 entries = line.split(',')
                 if len(entries) % 4 == 0: # sanity check to make sure we are dealing with a full deck, so to speak
-                    self.process(entries)
+                    self.process(entries, myUser)
                 
             ''' here is an example line of payload:
             1398221223683,-5.5385894775390625,-0.2913665771484375,7.8047637939453125
@@ -65,14 +66,15 @@ class FixtureHandler(BaseHandler):
 
     def get(self):
         logging.info("someone hit the fixture GET endpoint")
-        if self.isAuth():
+        myUser = self.isAuth()
+        if myUser:
             logging.info("they are authorized to hit the GET endpoint")
-            logging.info(state.lastState)
+            logging.info(state.userStates[myUser])
         else:
             logging.info("we rejected a GET attempt due to failed authentication")
             logging.info(self)
 
-    def process(self, entries):
+    def process(self, entries, theUser):
         logging.info(entries)
         l = int(len(entries)/4)
         logging.info('there are %s entries to parse' % l)
@@ -87,6 +89,7 @@ class FixtureHandler(BaseHandler):
             logging.info('mapped y is %s' % pY)
             logging.info('mapped z is %s' % pZ)
             state.lastState = [pX, pY, pZ]
+            state.userStates[theUser]
             seq = (str(pX), str(pY), str(pZ))
             toSend = ','.join(seq)
             logging.info('done processing %s ' % state.lastState)
